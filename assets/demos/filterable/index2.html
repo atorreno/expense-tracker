@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Filter - jQuery Mobile Demos</title>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="../_assets/css/jqm-demos.css">
+  <script src="../js/jquery.js"></script>
+  <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+  <!--
+  http://www.gajotres.net/how-to-correctly-submit-form-data-in-jquery-mobile/
+-->
+<div role="main" class="ui-content jqm-content">
+
+  <form id="add-transaction" name="add-transaction" method="post" data-ajax="false">
+    <input type="hidden" id="transactionTypeID" name="transactionTypeID" value="2">
+    <input type="hidden" id="transactionDate" name="transactionDate" value="2014-12-02">
+    
+    <input id="amount" name="amount">
+    <input type="submit">
+  </form>
+
+  <div data-demo-html="true">
+    <form class="ui-filterable">
+      <input id="filterBasic-input" data-type="search">
+    </form>
+    <ul data-role="listview" data-filter="true" data-input="#filterBasic-input">
+      <li>Acura</li>
+      <li>Audi</li>
+      <li>BMW</li>
+      <li>Cadillac</li>
+      <li>Ferrari</li>
+      <li>Chevrolet</li>
+    </ul>
+  </div><!--/demo-html -->
+
+  
+  <h2>Filter Anything</h2>
+  <p>The widget can be used for filtering on any element containing other elements, like a <code>div</code> containing <code>p</code> elements.
+  </p>
+  <div data-demo-html="true">
+    <form>
+      <input data-type="search" id="divOfPs-input">
+    </form>
+    <div class="elements" data-filter="true" data-input="#divOfPs-input">
+      <p><strong>These</strong> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+      <p><strong>tags</strong> nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
+      <p><strong>Tags</strong> erat, sed diam voluptua. At vero eos et accusam et justo duo dolores </p>
+      <p><strong>are</strong> et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est</p>
+      <p><strong>Filterable</strong> Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur</p>
+    </div>
+  </div>
+
+  
+</div><!-- /panel -->
+
+
+<div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
+  <p>jQuery Mobile Demos version <span class="jqm-version"></span></p>
+  <p>Copyright 2014 The jQuery Foundation</p>
+</div><!-- /footer -->
+
+<script>
+$(document).on('submit', '#add-transaction', function() {
+  $.ajax({url: 'http://localhost:1337/Transaction',
+    data: $('#add-transaction').serializeArray(),
+    type: 'post',                  
+    async: 'true',
+    dataType: 'json',
+    beforeSend: function() {
+      $.mobile.loading('show'); // This will show ajax spinner
+    },
+    complete: function() {
+      // This callback function will trigger on data sent/received complete
+      $.mobile.loading('hide')// This will hide ajax spinner
+    },
+    success: function (result) {
+      if(result.createdAt) {
+        console.log('it worked!')                       
+      } else {
+        console.log('it didn\'t work!');
+      }
+    },
+    error: function (request,error) {
+      // This callback function will trigger on unsuccessful action               
+      console.log('Network error has occurred please try again!');
+    }
+  }); 
+  return false;
+});
+
+
+
+$.ajax({
+  url: "http://localhost:1337/Transaction",
+  success: function(json) {
+    console.log(json);
+  },
+  error: function(e) {
+    console.log(e.message);
+  },
+  type: "POST",
+  data: { transactionTypeID: 2, transactionDate: '2014-12-02', amount: 1.25 },
+  async: false
+});
+
+function jsonCallback(){
+  console.log("test");
+}
+</script>
+</body>
+</html>
