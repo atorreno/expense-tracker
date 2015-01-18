@@ -13,8 +13,9 @@ module.exports = {
       autoIncrement: true,
       primaryKey: true
     },
-    transactionTypeID: {
-      type: 'integer',
+    transactionTypeCode: {
+      type: 'string',
+      enum: ['expense', 'bill', 'income'],
       required: true
     },
     transactionDate: {

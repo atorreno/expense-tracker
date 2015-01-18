@@ -24,7 +24,7 @@
  */
 
 module.exports.blueprints = {
-
+  jsonp: true
   /***************************************************************************
   *                                                                          *
   * Action routes speed up the backend development workflow by               *
