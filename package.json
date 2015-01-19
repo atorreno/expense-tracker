@@ -5,7 +5,6 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
-    "grunt-cli": ">=0.1.13",
     "grunt": "~0.4.4",
     "sails": "~0.10.5",
     "sails-disk": "~0.10.0",
