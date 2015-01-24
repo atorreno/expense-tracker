@@ -51,7 +51,7 @@ module.exports.connections = {
 
   prodDb: {
     adapter: 'sails-mysql',
-    host: 'mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/',
+    host: '127.7.226.130',
     user: 'admin2pa7gJe',
     password: '3XYVGPyjWJSc',
     database: 'expensetracker',
