@@ -49,6 +49,15 @@ module.exports.connections = {
     port: 3306
   },
 
+  prodDb: {
+    adapter: 'sails-mysql',
+    host: 'mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/',
+    user: 'admin2pa7gJe',
+    password: '3XYVGPyjWJSc',
+    database: 'expensetracker',
+    port: 3306
+  },
+
   /***************************************************************************
   *                                                                          *
   * MongoDB is the leading NoSQL database.                                   *
