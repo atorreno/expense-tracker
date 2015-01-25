@@ -44,7 +44,6 @@ module.exports.connections = {
     adapter: 'sails-mysql',
     host: 'localhost',
     user: 'root',
-    password: 'password',
     database: 'expensetracker',
     port: 3306
   },
